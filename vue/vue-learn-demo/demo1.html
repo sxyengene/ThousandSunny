@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>learn</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+<script>
+var vm = new Vue({
+  data:{
+	  a:1,
+	  b:[1,2,3],
+	  c:{
+	  	asd:1
+	  }
+  }
+})
+vm.$set(vm.b,0,123);
+Vue.set(vm.c,'asd','111');
+vm.d = Object.assign({}, vm.c, { a: 1, b: 2 });
+</script>
+</body>
+</html>

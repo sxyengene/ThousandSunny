@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+
+<div class="app">
+	<ul>
+		<template v-for="i in arr.length">
+			<li>
+				{{ arr[i-1] }}
+			</li>
+		</template>
+	</ul>	
+
+	<ul>
+		<template v-for="(value,key,index) in obj">
+			<li>
+				{{value}} {{key}} {{index}}
+			</li>
+		</template>
+	</ul>
+
+	<ul>
+		<template v-for="(value,index) in arr2">
+			<li>
+				{{value}} {{index}}
+			</li>
+		</template>
+	</ul>
+</div>
+
+<script>
+	var vm = new Vue({
+		el:'.app',
+		data:{
+			arr: [8,9,10,11],
+			obj:{
+				name:'s',
+				age:1
+			},
+			arr2:['a','b']
+		}
+	});
+</script>
+</body>
+</html>

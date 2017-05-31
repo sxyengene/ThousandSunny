@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+<style>
+	.block{
+		width: 100px;
+		height: 100px;
+		margin: 10px;
+		line-height: 100px;
+		font-size: 18px;
+		color: #fff;
+		text-align: center;
+	}
+	.red{
+		background-color: red;
+	}
+	.green{
+		background-color: green;
+	}
+	.large{
+		width: 150px;
+		height: 150px;
+		line-height: 150px;
+	}
+</style>
+<div class="app">
+	<div class="block" :class="{red:classObj}">block</div>
+	<div class="block block2" :class="classObj2">block2</div>
+	<div class="block block3" :class="classObject3">block3</div>
+	<div class="block block4" :class="[classObj2,'large', classObj ? 'red':'green']">block4</div>
+	<div class="block block5" :style="style">block5</div>
+</div>
+
+<script>
+	var vm = new Vue({
+		el:'.app',
+		data:{
+			classObj:true,
+			classObj2:'red',
+			style:{
+				fontSize:'20px',
+				width:'200px',
+				height:200,
+				'background-color':'#888'
+			}
+		},
+		computed:{
+			classObject3:function(){
+				return {
+					large:this.classObj == true,
+					green: true
+				}	
+			}
+		}
+	});
+
+
+	// vm.classObj = false;
+
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+
+<div class="app">
+	<span v-html="Agetter"></span>
+	<span v-html="Agetter"></span>
+
+	<span v-html="Bgetter()"></span>
+	<span v-html="Bgetter()"></span>
+</div>
+
+<script>
+	var vm = new Vue({
+		el:'.app',
+		data:{
+			msg:1,
+			msg2:2
+		},
+		computed:{
+			Agetter:{
+				get:function(){//缓存依赖。只计算一次。缓存变动的时候才会变动。
+					console.log(1);
+					return this.msg;
+				},
+				set:function(newVal){
+					this.msg = newVal;
+					// return newVal;
+				}
+			}
+		},
+		methods:{
+			Bgetter:function(){
+				console.log(2);	
+				return this.msg2;
+			}
+		}
+	});
+</script>
+</body>
+</html>

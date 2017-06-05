@@ -6,16 +6,9 @@
 	<script src="./vue.js"></script>
 </head>
 <body>
-<style>
-	.click{
-		width: 100px;
-		height: 100px;
-		background-color: red;
-	}
-</style>
-<div class="app" >
-	<a href="http://www.baidu.com/" class="click" @keyup.self.prevent.enter.tab.esc="alert">123</a>
-	<a href="http://www.baidu.com/" class="click" @keyup.self.prevent.tab.esc="alert2">123</a>
+
+<div class="app">
+	
 </div>
 
 <script>
@@ -23,14 +16,6 @@
 		el:'.app',
 		data:{
 			
-		},
-		methods:{
-			alert:function(){
-				alert(123);	
-			},
-			alert2:function(){
-				alert(456)	
-			}
 		}
 	});
 </script>

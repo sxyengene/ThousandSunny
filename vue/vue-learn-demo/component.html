@@ -6,32 +6,58 @@
 	<script src="./vue.js"></script>
 </head>
 <body>
-<style>
-	.click{
-		width: 100px;
-		height: 100px;
-		background-color: red;
-	}
-</style>
-<div class="app" >
-	<a href="http://www.baidu.com/" class="click" @keyup.self.prevent.enter.tab.esc="alert">123</a>
-	<a href="http://www.baidu.com/" class="click" @keyup.self.prevent.tab.esc="alert2">123</a>
+
+<div class="app">
+	<my-component></my-component>
+	<my-component1></my-component1>
+	<my-component2></my-component2>
+	<my-component2></my-component2>
+
+	<child message="hello!"></child>
 </div>
 
 <script>
+	Vue.component('my-component',{
+		template:'<p>asd</p>'
+	})
+
+	Vue.component('child', {
+	  // 声明 props
+	  props: ['message'],
+	  // 就像 data 一样，prop 可以用在模板内
+	  // 同样也可以在 vm 实例中像 “this.message” 这样使用
+	  template: '<span>{{ message }}</span>'
+	})
+
+
+	var Child = {
+	  template: '<div>A custom component!</div>'
+	}
+
+	var Child2 = {
+	  template: '<div @click="add">{{ abc }}</div>',
+	  methods:{
+	  	add:function(){
+	  		this.abc++;	
+	  	}
+	  },
+	  data:function(){
+	  	return {
+	  		abc:0
+	  	}	
+	  }
+	}
+
+
 	var vm = new Vue({
 		el:'.app',
 		data:{
 			
 		},
-		methods:{
-			alert:function(){
-				alert(123);	
-			},
-			alert2:function(){
-				alert(456)	
-			}
-		}
+		components: {
+	    'my-component1': Child,
+	    'my-component2':Child2
+	  }
 	});
 </script>
 </body>

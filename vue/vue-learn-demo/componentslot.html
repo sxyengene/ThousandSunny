@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+
+<div class="app">
+	<child>
+		<div class="footer" slot="footer">阿萨德阿萨德阿萨德</div>
+		<div class="header" slot="header">headerasdasdasd</div>
+		123
+	</child> 
+</div>
+
+<script>
+	Vue.component('child',{
+		template:'\
+		<div  class="container">\
+			<slot name="footer"></slot>\
+			<slot name="header"></slot>\
+			<slot></slot>\
+		</div>',
+	});
+
+	// <div class="container">
+	//   <header>
+	//     <slot name="header"></slot>
+	//   </header>
+	//   <main>
+	//     <slot></slot>
+	//   </main>
+	//   <footer>
+	//     <slot name="footer"></slot>
+	//   </footer>
+	// </div>
+
+	var vm = new Vue({
+		el:'.app',
+		data:{
+			
+		},
+		components: {}
+	});
+</script>
+</body>
+</html>

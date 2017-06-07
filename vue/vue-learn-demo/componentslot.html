@@ -25,24 +25,25 @@
 		</div>',
 	});
 
-	// <div class="container">
-	//   <header>
-	//     <slot name="header"></slot>
-	//   </header>
-	//   <main>
-	//     <slot></slot>
-	//   </main>
-	//   <footer>
-	//     <slot name="footer"></slot>
-	//   </footer>
-	// </div>
+	var parent = {
+		template:'\
+		<ul>\
+		  <slot name="item"\
+		    v-for="item in items"\
+		    :text="item.text">\
+		    <!-- 这里写入备用内容 -->\
+		  </slot>\
+		</ul>\
+		'}
 
 	var vm = new Vue({
 		el:'.app',
 		data:{
 			
 		},
-		components: {}
+		components: {
+			'parent':parent
+		}
 	});
 </script>
 </body>

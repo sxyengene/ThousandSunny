@@ -10,6 +10,9 @@
 <body>
 
 <div class="app">
+	<tab @msg="getFunc" :options="tabInit"></tab>
+</div>
+<div class="app2">
 	<tab :options="tabInit"></tab>
 </div>
 
@@ -17,11 +20,16 @@
 	<div>
 		<ul :class="options.tabClass">
 			<template v-for="i in options.navlength">
-				<li :class="[options.navClass,options.navClass+i]" >
+				<li :class="[options.navClass,options.navClass+i]" @click="navClick(i)">
 					nav{{i}}
 				</li>
 			</template>
 		</ul>
+		<template v-for="j in options.navlength">
+			<div v-show="j == active ? true :false" :class="[options.contentClass,options.contentClass+j]">
+				content{{j}}
+			</div>
+		</template>
 	</div>
 </template>
 
@@ -30,7 +38,7 @@
 		template:'#template',
 		data:function(){
 			return {
-
+				active:this.options.show
 			}
 		},
 		props:{
@@ -39,10 +47,19 @@
 					type:String,
 					default:'tab'
 				},
+				contentClass:{/*tabClass*/
+					type:String,
+					default:'tab_content'
+				},
 				navClass:{/*导航Class*/
-					default:'tab__nav'
+					default:'tab_nav'
 				},
 				navlength:{/**/
+					type:Number,
+					required:true,
+					default:1
+				},
+				show:{/**/
 					type:Number,
 					required:true,
 					default:1
@@ -50,13 +67,16 @@
 			}
 		},
 		mounted(){
-			console.log(this.options.tabClass);
+			console.log(this.active);
 		},
 		computed:{
 			
 		},
 		methods:{
-			tabs:3
+			navClick(index){
+				this.active = index;
+				this.$emit('msg',index);
+			}
 		}
 	});
 
@@ -66,10 +86,36 @@
 		data:{
 			tabInit:{
 				navlength:3,
-				navClass:'newtab__nav'
+				navClass:'newtab_nav',
+				contentClass:'tab_content',
+				show:1
+			},
+			cc:1
+		},
+		methods:{
+			getFunc(msg){
+				this.cc = msg;
 			}
 		}
 	});
+
+
+	var vm2 = new Vue({
+		el:'.app2',
+		data:{
+			tabInit:{
+				navlength:3,
+				navClass:'newtab_nav',
+				contentClass:'tab_content',
+				show:1
+			}
+		}
+	});
+
+
+	vm2.$on('navClick', function (id) {
+		console.log(this.active)
+	})
 </script>
 
 </body>

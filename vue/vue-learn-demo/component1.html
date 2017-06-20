@@ -15,10 +15,17 @@
 	</div>
 </div>
 
+
+<template style="display:none" id="tem">
+  <div @click="wrap" style="background:red;padding:15px;">
+    <button @click="aaa">{{ count }}</button>
+  </div>
+</template>
+
 <script>
 Vue.component('button-counter', {
 	props:['counter'],
-  template: '<div @click="wrap" style="background:red;padding:15px;"><button @click="aaa">{{ count }}</button></div>',
+  template: 'tem',
   data: function () {
     return {
       count: this.counter
